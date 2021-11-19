@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <app></app>
+    
+  </div>
+  <script>
+
+  const student = Vue.extend({
+      name: 'student',
+      template: `<div>
+        <h2>姓名：{{stuName}}</h2>
+        <h2>年龄：{{age}}</h2>
+      </div>`,
+      data(){
+        return{
+          stuName: '芳芳',
+          age: 12
+        }
+      }
+    })
+    const school = Vue.extend({
+      name: 'school',
+      template: `<div>
+        <h2>学校：{{schoolName}}</h2>
+        <h2>地址：{{address}}</h2>
+        <student></student>
+      </div>`,
+      data(){
+        return{
+          schoolName: '白云区学校',
+          address: '白云区'
+        }
+      },
+      // 注册组件
+      components:{
+        student
+      }
+    })
+
+    const hello = Vue.extend({
+      template:`<h1>{{msg}}</h1>`,
+      data(){
+        return{
+          msg: 'hello，在忙啥啊'
+        }
+      }
+    })
+
+    //定义app组件
+    const app = Vue.extend({
+      template:`
+        <div>
+          <hello></hello>
+          <school></school>
+        </div>
+      `,
+      components:{
+        school,
+        hello
+      }
+    })
+    
+    const vm = new Vue({
+      el:'#root',
+      components:{
+        app
+      }
+    })
+  </script>
+</body>
+</html>

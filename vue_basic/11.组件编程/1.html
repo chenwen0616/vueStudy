@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    1、什么是组件
+      实现应用中局部功能代码和资源的集合
+
+    2、组件和传统方式编写有什么区别
+      组件：复用率高，结构清晰，文件好维护，
+   -->
+
+   <!-- 单文件组件：一个文件中只包含一个组件 -->
+   <!-- 非单文件组件：一个文件中包含n个文件 -->
+   <div id="root">
+      <school></school>
+      <hr/>
+      <student></student>
+   </div>
+   <script>
+     // 创建组件
+     const school = Vue.extend({
+       template:`
+        <div>
+          <h2>学校名称：{{schoolName}}</h2>  
+          <h2>学校地址：{{address}}</h2>  
+          <button @click='infoName'>点我提示学校名</button>
+        </div>
+       `,
+       data(){
+         return {
+            schoolName: 'baiyunxiaoxue',
+            address: 'baiyunqu'
+         }
+       },
+        methods:{
+           infoName(){
+             alert(this.schoolName)
+           }
+        }
+     })
+     const student = Vue.extend({
+      template:`
+        <div>
+          <h2>学生姓名：{{studentName}}</h2>  
+          <h2>学校年龄：{{age}}</h2>  
+        </div>
+       `,
+        data(){
+         return {
+           studentName: 'danni',
+           age:12
+         }
+        }
+     })
+
+     new Vue({
+       el:'#root',
+       // 注册组件
+       components:{
+         school: school,
+         student,
+       }
+     })
+   </script>
+</body>
+</html>

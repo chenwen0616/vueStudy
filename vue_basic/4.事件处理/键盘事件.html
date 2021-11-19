@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <!-- 
+    vue常用的按键别名：
+      1.回车 enter
+      2.删除 delete
+      3.退出 esc
+      4.空格 space
+      5.换行 tab  按tab时，会从当前元素上切走，不能绑定在keyup上，需绑定在keydown上使用
+      6.上   up
+      6.下   down
+      7.左   left
+      8.右   right
+    2、当按键别名是由多个单词组成的时候 得写成xx-xx 如：caps-lock 切换大小写
+    3、系统修饰键：ctrl、alt、shift、meta(windows徽标键)
+      （1）配合keyup使用：按下修饰键的同事，再按下其他键，再释放其他键，才会触发
+      （2）配合keydown使用：正常触发
+    4、
+    5、Vue.config.keyCodes 自定义键名 = 键码，也可以定制按键别名
+   -->
+  <div id="root">
+    <h2>欢迎{{name}}一起学习</h2>
+    <!-- 
+      keydown 是指按下去没抬起来就触发事件，
+      keyup 是指按下去抬起来才触发事件  一般用keyup
+     -->
+    <input type='text' @keyup.enter='showInfo' />
+  </div>
+
+  <script>
+    // Vue.config.keyCodes.huiche = 13;
+    const vm = new Vue({
+      el:'#root',
+      data:{
+        name:'你'
+      },
+      methods:{
+        showInfo(e){
+          console.log('需',e.target.value)
+        }
+      }
+    })
+  </script>
+</body>
+</html>
